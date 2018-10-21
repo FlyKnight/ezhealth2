@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <link rel="stylesheet" href="main.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+      <title>EZHealth</title>
+      <body>
+        <nav>
+          <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo">EZHealth</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="maps.html">Maps</a></li>
+              <li><a href="search.html">Search</a></li>
+              <li><a href="dietary.html">Dietary Restrictions</a></li>
+            </ul>
+          </div>
+        </nav>
+        <h1>
+          Local Restaurants
+        </h1>
+        <div id="map" style="width: 60%; height: 500px;right: -20%"></div>
+
+      </body>
+
+    <script type="text/javascript">
+      window.onload = function() {
+
+      
+        L.mapquest.key = 'TkiSFFrK8J8Ox7StZCthQAVloULiGVRp';
+
+        var map = L.mapquest.map('map', {
+          center: [37.464124, -122.14165],
+          layers: L.mapquest.tileLayer('map'),
+          zoom: 12
+        });
+
+        map.addControl(L.mapquest.control());
+      }
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET","https://www.mapquestapi.com/search/v4/place?sort=relevance&feedback=false&key=TkiSFFrK8J8Ox7StZCthQAVloULiGVRp&q=restaurants%2C%20palo%20alto",false)
+      xhr.send()
+      var response = xhr.responseText
+      console.log(response)
+
+      var json  = JSON.parse(response);
+      var results = json.results;
+      var addresses = new Array();
+      console.log(results)
+      for ( var i = 0; i<results.length; i++){
+        addresses.push(results[i].place.geometry.coordinates);
+        L.marker(addresses[i], {
+         icon: L.mapquest.icons.marker(),
+         draggable: false
+       }).bindPopup('Palo Alto, CA').addTo(map);
+
+      }
+
+
+
+
+
+
+      //console.log(addresses)
+
+
+
+
+        //xhr2.responseType = 'blob';
+
+
+
+
+    </script>
+
+
+
+  </head>
+
+
+
+</html>
