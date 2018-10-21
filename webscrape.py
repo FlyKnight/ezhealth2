@@ -90,9 +90,9 @@ for title in parsed_titles:
     if counter>3:
         break
     result = rapid.call('Nutritionix', 'getFoodsNutrients', {
-        'applicationSecret': '7dc0117aa5dae37089f3986ee37825ba',
+        'applicationSecret': 'b21a151efff16f58210aa18e17e15d2e',
 	    'foodDescription': food,
-	    'applicationId': '436e4127'
+	    'applicationId': '21596a2b'
         })
 
     print(result)
