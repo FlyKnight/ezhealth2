@@ -37,6 +37,7 @@
     </body>
 
     <script type="text/javascript">
+     var addresses = new Array();
     function myFunction(){
 
      var searched = document.getElementById("search22").value
@@ -52,7 +53,7 @@
   console.log(response)
   var json  = JSON.parse(response);
        var results = json.results;
-       var addresses = new Array();
+
        console.log(results)
 
        for ( var i = 0; i<results.length; i++){
@@ -76,10 +77,20 @@
 
         L.mapquest.key = 'TkiSFFrK8J8Ox7StZCthQAVloULiGVRp';
 
+        var avglat = 0
+        var avglong = 0
+        var count = 0
+        for (count; count < addresses.length; count++){
+          avglat += addresses[count][1]
+          avglong += addresses[count][0]
+        }
+        avglat = avglat/count
+        avglong = avglong/count
         window.map = L.mapquest.map('map', {
-          center: [37.464124, -122.14165],
+
+          center: [0, 0],
           layers: L.mapquest.tileLayer('map'),
-          zoom: 6
+          zoom: 3
         });
 
 
