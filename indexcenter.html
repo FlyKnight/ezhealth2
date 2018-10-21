@@ -23,7 +23,7 @@
               </ul>
             </div>
           </nav>
-          <h1>
+          <h1 id="urdog">
             Local Restaurants
           </h1>
           <div class="wrap">
@@ -34,9 +34,11 @@
      </button>
    </div>
 </div>
-    </body>
 
     <script type="text/javascript">
+    function menuMom() {
+      //document.getElementById("urdog").value= "left";
+    }
      var addresses = new Array();
     function myFunction(){
 
@@ -67,7 +69,7 @@
                L.marker(addresses[i], {
                 icon: L.mapquest.icons.marker(),
                 draggable: false
-              }).bindPopup(results[i].name).addTo(map);
+              }).bindPopup("<a href='#' onclick='menuMom()'>" + results[i].name + "</a>").addTo(map);
             }
 }
 
@@ -88,9 +90,9 @@
         avglong = avglong/count
         window.map = L.mapquest.map('map', {
 
-          center: [0, 0],
+          center: [37.462980, -122.141350],
           layers: L.mapquest.tileLayer('map'),
-          zoom: 3
+          zoom: 6
         });
 
 
@@ -111,9 +113,14 @@
         //L.polygon(denverLatLngs, {color: 'red'}).addTo(map);
       };
     </script>
+    <div class="row">
+         <div class="col s6">    <div id="map" style="width: 60%; height: 500px; right: -20%"></div>
+</div>
+         <div class="col s6">6-columns (one-half)</div>
+       </div>
 
-<body>
-  <div id="map" style="width: 60%; height: 500px; right: -20%"></div>
+
+
 </body>
 
 </html>
